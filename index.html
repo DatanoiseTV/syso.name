@@ -25,12 +25,18 @@
             --secondary: #e0e0e0;
             --text-primary: #f5f5f5;
             --text-secondary: #b0b0b0;
-            --accent: #ffffff;
+            --accent: #ffffff; /* Pure white */
             --bg-light: #1e1e1e;
             --bg-dark: #121212;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --header-height: 70px;
+
+            /* Gradient Colors */
+            --gradient-color-1: #6A11CB; /* Deep Purple */
+            --gradient-color-2: #2575FC; /* Bright Blue */
+            --gradient-hero-start: hsla(260, 60%, 25%, 0.25); /* Darker, subtle purple for hero bg */
+            --gradient-hero-end: hsla(220, 70%, 30%, 0.15);  /* Darker, subtle blue for hero bg */
         }
         * {
             margin: 0;
@@ -66,7 +72,7 @@
             position: absolute;
             width: 80px;
             height: 4px;
-            background: var(--secondary);
+            background: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2)); /* Gradient underline */
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
@@ -140,7 +146,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary);
+            background-color: var(--secondary); /* Or use gradient: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2)); */
             transition: width 0.3s ease;
         }
         .nav-link:hover::after {
@@ -158,10 +164,13 @@
             font-weight: 500;
             font-size: 16px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, background-image 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
-        .contact-button:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .contact-button:hover { /* Gradient on hover */
+            background-color: transparent;
+            background-image: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+            border-color: transparent;
+            color: var(--accent);
             transform: translateY(-2px);
         }
         .hero {
@@ -181,7 +190,7 @@
             bottom: 0;
             z-index: -1;
         }
-        .hero-bg::before {
+        .hero-bg::before { /* Existing subtle white gradient */
             content: '';
             position: absolute;
             top: 0;
@@ -189,6 +198,20 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 50%);
+            z-index: -1; /* Ensure it's behind hero content */
+        }
+        .hero-bg::after { /* New subtle color gradient */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 80%, var(--gradient-hero-start), transparent 60%),
+                radial-gradient(ellipse at 80% 30%, var(--gradient-hero-end), transparent 60%);
+            z-index: -2; /* Behind the ::before gradient */
+            opacity: 0.8; 
         }
         .hero-content {
             max-width: 800px;
@@ -230,6 +253,10 @@
             padding-left: 20px;
             max-width: 750px;
         }
+        .hero-philosophy .highlight-hero {
+            color: var(--accent); /* Pure white for max contrast */
+            font-weight: 700;     /* Ensure it's bolder */
+        }
         .hero-approach {
             font-size: 20px;
             color: var(--text-secondary);
@@ -269,13 +296,16 @@
             font-weight: 500;
             font-size: 16px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease, background-image 0.3s ease, border-color 0.3s ease, color 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards 1.5s; 
         }
-        .hero-cta:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .hero-cta:hover { /* Gradient on hover */
+            background-color: transparent;
+            background-image: linear-gradient(to right, var(--gradient-color-1), var(--gradient-color-2));
+            border-color: transparent;
+            color: var(--accent);
             transform: translateY(-2px);
         }
         @keyframes fadeInUp {
@@ -323,7 +353,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--secondary);
+            background: var(--secondary); /* Or use gradient: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2)); */
         }
         .skills-grid {
             display: grid;
@@ -335,7 +365,7 @@
             align-items: center;
         }
         .skill-icon {
-            color: var(--secondary);
+            color: var(--secondary); /* Or use var(--gradient-color-1) for more color */
             margin-right: 10px;
             font-size: 14px;
         }
@@ -370,6 +400,8 @@
         }
         .service-card:hover {
             transform: translateY(-10px);
+            /* Optional: Add subtle gradient shadow or border on hover here if desired */
+            /* box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 15px var(--gradient-color-1_transparent); */
         }
         .service-card::before {
             content: '';
@@ -388,7 +420,7 @@
         }
         .service-icon {
             font-size: 40px;
-            color: var(--secondary);
+            color: var(--secondary); /* Or use gradient color like var(--gradient-color-2) */
             margin-bottom: 20px;
         }
         .service-title {
@@ -410,11 +442,11 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        .timeline::after {
+        .timeline::after { /* Central timeline bar */
             content: '';
             position: absolute;
             width: 2px;
-            background-color: var(--bg-light);
+            background-color: var(--bg-light); /* Could use a very subtle gradient here too, but might be overkill */
             top: 0;
             bottom: 0;
             left: 50%;
@@ -428,14 +460,14 @@
             box-sizing: border-box;
             margin-bottom: 30px;
         }
-        .timeline-item::after {
+        .timeline-item::after { /* Timeline dots */
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
             right: -10px;
             background-color: var(--bg-dark);
-            border: 3px solid var(--secondary);
+            border: 3px solid var(--secondary); /* Or use gradient border: border-image: linear-gradient(to bottom right, var(--gradient-color-1), var(--gradient-color-2)) 1; */
             top: 15px;
             border-radius: 50%;
             z-index: 1;
@@ -490,7 +522,7 @@
         }
         .timeline-tag {
             background-color: rgba(255, 255, 255, 0.1);
-            color: var(--secondary);
+            color: var(--secondary); /* Or a gradient color */
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 12px;
@@ -522,7 +554,7 @@
             transition: all 0.3s ease;
         }
         .skill-category.active {
-            color: var(--secondary);
+            color: var(--secondary); /* Or var(--gradient-color-2) */
         }
         .skill-category::after {
             content: '';
@@ -531,7 +563,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary);
+            background-color: var(--secondary); /* Or gradient */
             transition: width 0.3s ease;
         }
         .skill-category.active::after {
@@ -556,7 +588,7 @@
         }
         .skill-icon-large {
             font-size: 40px;
-            color: var(--secondary);
+            color: var(--secondary); /* Or a gradient color */
             margin-bottom: 15px;
         }
         .skill-name-large { 
@@ -595,7 +627,7 @@
         }
         .contact-icon {
             font-size: 30px;
-            color: var(--secondary);
+            color: var(--secondary); /* Or a gradient color */
             margin-bottom: 20px;
         }
         .contact-label { 
@@ -643,7 +675,7 @@
             transition: all 0.3s ease;
         }
         .social-link:hover {
-            color: var(--secondary);
+            color: var(--secondary); /* Or a gradient color stop */
             transform: translateY(-3px);
         }
         .footer-text {
@@ -803,7 +835,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Sylwester Sosnowski",
-      "url": "https://syso.name/", // REPLACE
+      "url": "https://syso.name/", /* MAKE SURE THIS IS YOUR CORRECT URL */
       "jobTitle": "Embedded Systems Architect and Custom Hardware Engineer",
       "worksFor": {
         "@type": "Organization",
@@ -834,7 +866,7 @@
         "@type": "Person",
         "name": "Sylwester Sosnowski"
       },
-      "url": "https://syso.name/", // REPLACE (Use your main portfolio URL if Datanoise doesn't have a separate one)
+      "url": "https://syso.name/", /* MAKE SURE THIS IS YOUR CORRECT URL */
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Tempelhofer Ufer 36, c/o Susthetix GmbH",
@@ -849,7 +881,7 @@
         "@type": "Place",
         "name": "Berlin, Germany"
       },
-      "legalName": "Datanoise UG (haftungsbeschränkt)", // Important for legal entity
+      "legalName": "Datanoise UG (haftungsbeschränkt)", 
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Custom Hardware and Embedded Systems Services",
@@ -925,7 +957,7 @@
                 <p class="hero-greeting">Hi, my name is</p>
                 <h1 class="hero-name">Sylwester Sosnowski.</h1>
                 <p class="hero-philosophy">
-                    I believe your unique vision deserves technology built without compromise. My purpose is to empower that vision with hardware engineered exclusively for you in Berlin and beyond.
+                    I believe your <span class="highlight-hero">unique vision</span> deserves technology built <span class="highlight-hero">without compromise</span>. My purpose is to <span class="highlight-hero">empower</span> that vision with hardware <span class="highlight-hero">engineered exclusively for you</span> in Berlin and beyond.
                 </p>
                 <p class="hero-approach">
                     I achieve this by meticulously designing and developing custom hardware and firmware—from initial concept to robust, production-ready solutions for clients worldwide.
@@ -938,6 +970,7 @@
         </div>
     </section>
 
+    <!-- ... (rest of your HTML, no changes needed from <section class="section about" id="about"> downwards for this specific request, but the JS and modal part is included below for completeness) ... -->
     <section class="section about" id="about">
         <div class="container">
             <h2 class="section-title fade-in">About Your Embedded Systems Architect in Berlin</h2>
