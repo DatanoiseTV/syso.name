@@ -257,7 +257,7 @@
             max-width: 750px;
         }
         .hero-philosophy .highlight-hero {
-            color: #e98a15; /* Your chosen highlight color */
+            color: #f45b69; /* Your chosen highlight color */
             font-weight: 700;     /* Raleway Bold */
         }
         .hero-approach {
@@ -330,12 +330,10 @@
         .about-text p {
             margin-bottom: 20px;
             color: var(--text-secondary);
-            /* font-family: var(--font-sans); /* This is already inherited from body */
-            /* line-height: 1.7; /* Optional: if 1.6 feels too tight for these paragraphs */
         }
-        .about-text p strong { /* Style for <strong> tags if needed, usually default bold is fine */
-            font-weight: 600; /* Or your preferred bold weight for Inter */
-            color: var(--text-primary); /* Make bold text slightly brighter */
+        .about-text p strong {
+            font-weight: 600;
+            color: var(--text-primary);
         }
         .about-text p:last-child {
             margin-bottom: 0;
@@ -430,6 +428,14 @@
             color: var(--secondary);
             margin-bottom: 20px;
         }
+        .service-icon i { /* For service icon animation */
+            display: inline-block;
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), color 0.3s ease;
+        }
+        .service-card:hover .service-icon i { /* Service icon animation on card hover */
+            transform: scale(1.2) translateY(-4px) rotate(-5deg);
+            color: var(--accent);
+        }
         .service-title {
             font-family: var(--font-heading);
             font-size: 22px;
@@ -467,7 +473,7 @@
             box-sizing: border-box;
             margin-bottom: 30px;
         }
-        .timeline-item::after {
+        .timeline-item::after { /* Timeline dot base style */
             content: '';
             position: absolute;
             width: 20px;
@@ -475,19 +481,25 @@
             right: -10px;
             background-color: var(--bg-dark);
             border: 3px solid var(--secondary);
+            box-shadow: 0 0 3px rgba(224,224,224,0.2); /* Initial subtle glow */
             top: 15px;
             border-radius: 50%;
             z-index: 1;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* For smooth transition if animation stops */
         }
-        .left {
-            left: 0;
+        .left { left: 0; }
+        .right { left: 50%; }
+        .right::after { left: -10px; }
+
+        @keyframes pulseDotBorder { /* Timeline dot animation keyframes */
+            0% { border-color: var(--secondary); box-shadow: 0 0 3px rgba(224,224,224,0.2); }
+            50% { border-color: var(--accent); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
+            100% { border-color: var(--secondary); box-shadow: 0 0 3px rgba(224,224,224,0.2); }
         }
-        .right {
-            left: 50%;
+        .timeline-item.is-visible::after { /* Class added by JS to trigger animation */
+            animation: pulseDotBorder 1.8s ease-in-out infinite;
         }
-        .right::after {
-            left: -10px;
-        }
+
         .timeline-content {
             padding: 25px;
             background-color: var(--bg-light);
@@ -593,10 +605,17 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
-        .skill-icon-large {
-            font-size: 40px;
-            color: var(--secondary);
+        .skill-icon-large { /* This is the div container for the icon */
+            font-size: 40px; /* This sets the size for the icon inside */
+            color: var(--secondary); /* Fallback color for the container, icon itself will be gradient */
             margin-bottom: 15px;
+        }
+        .skill-icon-large i { /* Target the <i> element for the gradient */
+            background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block; /* Ensures proper rendering of gradient text */
         }
         .skill-name-large {
             font-family: var(--font-heading);
@@ -1041,8 +1060,6 @@
         </div>
     </section>
 
-    <!-- ... (rest of your HTML, including services, experience, skills, contact, footer, modal) ... -->
-
     <section class="section services" id="services">
         <div class="container">
             <h2 class="section-title fade-in">Custom Hardware & Embedded Systems Services</h2>
@@ -1100,7 +1117,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Professional Experience in Hardware Engineering</h2>
             <div class="timeline">
-                <div class="timeline-item left fade-in">
+                <div class="timeline-item left fade-in"> <!-- JS will add .is-visible to this -->
                     <div class="timeline-content">
                         <div class="timeline-date">Jan 2024 - Present</div>
                         <h3 class="timeline-role">Embedded Systems Engineer</h3>
@@ -1114,7 +1131,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item right fade-in">
+                <div class="timeline-item right fade-in"> <!-- JS will add .is-visible to this -->
                     <div class="timeline-content">
                         <div class="timeline-date">Jan 2023 - Present</div>
                         <h3 class="timeline-role">CEO & Chief Hardware Engineer</h3>
@@ -1129,7 +1146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item left fade-in">
+                <div class="timeline-item left fade-in"> <!-- JS will add .is-visible to this -->
                     <div class="timeline-content">
                         <div class="timeline-date">Nov 2018 - Jun 2019</div>
                         <h3 class="timeline-role">IT Security Specialist & DevOps Engineer</h3>
@@ -1143,7 +1160,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item right fade-in">
+                <div class="timeline-item right fade-in"> <!-- JS will add .is-visible to this -->
                     <div class="timeline-content">
                         <div class="timeline-date">Mar 2016 - Mar 2019</div>
                         <h3 class="timeline-role">Senior IT Consultant & Systems Architect</h3>
@@ -1521,6 +1538,33 @@
                 }
             });
         }
+
+        // IntersectionObserver for timeline item animations
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observerOptions = {
+            root: null, // observing intersections with the viewport
+            rootMargin: '0px',
+            threshold: 0.3 // Trigger when 30% of the item is visible
+        };
+
+        const intersectionCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: If you want the animation to play only once
+                    // observer.unobserve(entry.target);
+                } else {
+                    // Optional: If you want animation to stop when out of view and restart
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        };
+
+        const timelineObserver = new IntersectionObserver(intersectionCallback, observerOptions);
+        timelineItems.forEach(item => {
+            timelineObserver.observe(item);
+        });
+
 
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(checkFade, 100);
