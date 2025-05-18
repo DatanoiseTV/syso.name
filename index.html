@@ -464,6 +464,7 @@
             bottom: 0;
             left: 50%;
             margin-left: -1px;
+            z-index: 1; /* MODIFIED: Added z-index for the line */
         }
         .timeline-item {
             padding: 10px 40px;
@@ -472,6 +473,7 @@
             width: 50%;
             box-sizing: border-box;
             margin-bottom: 30px;
+            z-index: 2; /* MODIFIED: Added z-index to ensure items are above the line */
         }
         .timeline-item::after { /* Timeline dot base style */
             content: '';
@@ -484,8 +486,10 @@
             box-shadow: 0 0 3px rgba(224,224,224,0.2); /* Initial subtle glow */
             top: 15px;
             border-radius: 50%;
-            z-index: 1;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease; /* For smooth transition if animation stops */
+            z-index: 1; /* This z-index is local to .timeline-item, it's fine. */
+                       /* The parent .timeline-item's z-index: 2 ensures this circle (as part of the item) */
+                       /* is above the main timeline line. */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .left { left: 0; }
         .right { left: 50%; }
