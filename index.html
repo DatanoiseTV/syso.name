@@ -14,11 +14,13 @@
     <meta property="og:description" content="Bespoke PCB design, C++/Go firmware, and IoT solutions in Berlin. Sylwester Sosnowski helps bring your unique hardware visions to life.">
 
     <link rel="canonical" href="https://syso.name/" />
+    <!-- TODO: Add Favicon link here, e.g., <link rel="icon" href="/favicon.ico" type="image/x-icon"> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #121212;
@@ -30,6 +32,7 @@
             --bg-dark: #121212;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-philosophy: 'Raleway', var(--font-sans); /* New font variable for philosophy text */
             --header-height: 70px;
 
             /* Gradient Colors */
@@ -146,7 +149,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary); /* Or use gradient: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2)); */
+            background-color: var(--secondary);
             transition: width 0.3s ease;
         }
         .nav-link:hover::after {
@@ -198,7 +201,7 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 50%);
-            z-index: -1; /* Ensure it's behind hero content */
+            z-index: -1;
         }
         .hero-bg::after { /* New subtle color gradient */
             content: '';
@@ -207,11 +210,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(ellipse at 20% 80%, var(--gradient-hero-start), transparent 60%),
                 radial-gradient(ellipse at 80% 30%, var(--gradient-hero-end), transparent 60%);
-            z-index: -2; /* Behind the ::before gradient */
-            opacity: 0.8; 
+            z-index: -2;
+            opacity: 0.8;
         }
         .hero-content {
             max-width: 800px;
@@ -222,49 +225,49 @@
             font-family: var(--font-sans);
             font-size: 18px;
             font-weight: 400;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards 0.5s;
         }
-        .hero-name { 
+        .hero-name {
             font-family: var(--font-heading);
-            font-size: 64px; 
+            font-size: 64px;
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             color: var(--text-primary);
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards 0.7s;
-            padding-top: 10px; 
+            padding-top: 10px;
             padding-left: 20px;
         }
-        .hero-philosophy { 
-            font-family: var(--font-heading);
-            font-size: 38px; 
-            font-weight: 600; 
-            line-height: 1.3;
+        .hero-philosophy {
+            font-family: var(--font-philosophy); /* Using Raleway via variable */
+            font-size: 36px; /* Adjusted for Raleway */
+            font-weight: 500; /* Raleway Medium */
+            line-height: 1.4; /* Adjusted for Raleway */
             margin-bottom: 25px;
-            color: var(--text-primary); 
+            color: var(--text-primary);
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards 0.9s; 
+            animation: fadeInUp 0.5s ease forwards 0.9s;
             padding-left: 20px;
             max-width: 750px;
         }
         .hero-philosophy .highlight-hero {
-            color: var(--accent); /* Pure white for max contrast */
-            font-weight: 700;     /* Ensure it's bolder */
+            color: #e98a15; /* Your chosen highlight color */
+            font-weight: 700;     /* Raleway Bold */
         }
         .hero-approach {
             font-size: 20px;
             color: var(--text-secondary);
             margin-bottom: 25px;
-            max-width: 700px; 
+            max-width: 700px;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards 1.1s; 
+            animation: fadeInUp 0.5s ease forwards 1.1s;
             padding-left: 20px;
             line-height: 1.5;
         }
@@ -272,13 +275,13 @@
             font-size: 18px;
             color: var(--text-secondary);
             margin-bottom: 40px;
-            max-width: 650px; 
+            max-width: 650px;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards 1.3s; 
+            animation: fadeInUp 0.5s ease forwards 1.3s;
             padding-left: 20px;
         }
-        .hero-description a { 
+        .hero-description a {
             color: var(--secondary);
             text-decoration: underline;
             font-weight: 500;
@@ -299,7 +302,7 @@
             transition: all 0.3s ease, background-image 0.3s ease, border-color 0.3s ease, color 0.3s ease;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.5s ease forwards 1.5s; 
+            animation: fadeInUp 0.5s ease forwards 1.5s;
         }
         .hero-cta:hover { /* Gradient on hover */
             background-color: transparent;
@@ -327,6 +330,12 @@
         .about-text p {
             margin-bottom: 20px;
             color: var(--text-secondary);
+            /* font-family: var(--font-sans); /* This is already inherited from body */
+            /* line-height: 1.7; /* Optional: if 1.6 feels too tight for these paragraphs */
+        }
+        .about-text p strong { /* Style for <strong> tags if needed, usually default bold is fine */
+            font-weight: 600; /* Or your preferred bold weight for Inter */
+            color: var(--text-primary); /* Make bold text slightly brighter */
         }
         .about-text p:last-child {
             margin-bottom: 0;
@@ -353,7 +362,7 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--secondary); /* Or use gradient: linear-gradient(90deg, var(--gradient-color-1), var(--gradient-color-2)); */
+            background: var(--secondary);
         }
         .skills-grid {
             display: grid;
@@ -365,7 +374,7 @@
             align-items: center;
         }
         .skill-icon {
-            color: var(--secondary); /* Or use var(--gradient-color-1) for more color */
+            color: var(--secondary);
             margin-right: 10px;
             font-size: 14px;
         }
@@ -381,7 +390,7 @@
             max-width: 700px;
             margin: 0 auto 60px;
             color: var(--text-secondary);
-            font-size: 18px; 
+            font-size: 18px;
         }
         .services-grid {
             display: grid;
@@ -400,8 +409,6 @@
         }
         .service-card:hover {
             transform: translateY(-10px);
-            /* Optional: Add subtle gradient shadow or border on hover here if desired */
-            /* box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 15px var(--gradient-color-1_transparent); */
         }
         .service-card::before {
             content: '';
@@ -420,7 +427,7 @@
         }
         .service-icon {
             font-size: 40px;
-            color: var(--secondary); /* Or use gradient color like var(--gradient-color-2) */
+            color: var(--secondary);
             margin-bottom: 20px;
         }
         .service-title {
@@ -442,11 +449,11 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        .timeline::after { /* Central timeline bar */
+        .timeline::after {
             content: '';
             position: absolute;
             width: 2px;
-            background-color: var(--bg-light); /* Could use a very subtle gradient here too, but might be overkill */
+            background-color: var(--bg-light);
             top: 0;
             bottom: 0;
             left: 50%;
@@ -460,14 +467,14 @@
             box-sizing: border-box;
             margin-bottom: 30px;
         }
-        .timeline-item::after { /* Timeline dots */
+        .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
             height: 20px;
             right: -10px;
             background-color: var(--bg-dark);
-            border: 3px solid var(--secondary); /* Or use gradient border: border-image: linear-gradient(to bottom right, var(--gradient-color-1), var(--gradient-color-2)) 1; */
+            border: 3px solid var(--secondary);
             top: 15px;
             border-radius: 50%;
             z-index: 1;
@@ -498,7 +505,7 @@
             margin-bottom: 5px;
             font-size: 14px;
         }
-        .timeline-role { 
+        .timeline-role {
             font-family: var(--font-heading);
             font-size: 20px;
             font-weight: 600;
@@ -522,7 +529,7 @@
         }
         .timeline-tag {
             background-color: rgba(255, 255, 255, 0.1);
-            color: var(--secondary); /* Or a gradient color */
+            color: var(--secondary);
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 12px;
@@ -535,12 +542,12 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .skill-categories { 
+        .skill-categories {
             display: flex;
             justify-content: center;
             margin-bottom: 40px;
         }
-        .skill-category { 
+        .skill-category {
             padding: 10px 20px;
             margin: 0 10px;
             background-color: transparent;
@@ -554,7 +561,7 @@
             transition: all 0.3s ease;
         }
         .skill-category.active {
-            color: var(--secondary); /* Or var(--gradient-color-2) */
+            color: var(--secondary);
         }
         .skill-category::after {
             content: '';
@@ -563,7 +570,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background-color: var(--secondary); /* Or gradient */
+            background-color: var(--secondary);
             transition: width 0.3s ease;
         }
         .skill-category.active::after {
@@ -571,7 +578,7 @@
         }
         .skills-content {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
         .skill-card {
@@ -588,10 +595,10 @@
         }
         .skill-icon-large {
             font-size: 40px;
-            color: var(--secondary); /* Or a gradient color */
+            color: var(--secondary);
             margin-bottom: 15px;
         }
-        .skill-name-large { 
+        .skill-name-large {
             font-family: var(--font-heading);
             font-size: 18px;
             font-weight: 600;
@@ -606,7 +613,7 @@
             max-width: 700px;
             margin: 0 auto 60px;
             color: var(--text-secondary);
-            font-size: 18px; 
+            font-size: 18px;
         }
         .contact-grid {
             display: grid;
@@ -627,10 +634,10 @@
         }
         .contact-icon {
             font-size: 30px;
-            color: var(--secondary); /* Or a gradient color */
+            color: var(--secondary);
             margin-bottom: 20px;
         }
-        .contact-label { 
+        .contact-label {
             font-family: var(--font-heading);
             font-size: 18px;
             font-weight: 600;
@@ -675,7 +682,7 @@
             transition: all 0.3s ease;
         }
         .social-link:hover {
-            color: var(--secondary); /* Or a gradient color stop */
+            color: var(--secondary);
             transform: translateY(-3px);
         }
         .footer-text {
@@ -683,7 +690,7 @@
             font-size: 14px;
         }
         .footer-text a {
-            color: var(--text-secondary); 
+            color: var(--text-secondary);
             text-decoration: underline;
             cursor: pointer;
         }
@@ -700,7 +707,7 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .services a { 
+        .services a {
             color: var(--secondary);
             text-decoration: none;
             font-weight: 500;
@@ -736,7 +743,7 @@
             position: relative;
             color: var(--text-secondary);
         }
-        .impressum-modal-content h1, 
+        .impressum-modal-content h1,
         .impressum-modal-content h2 {
             font-family: var(--font-heading);
             color: var(--text-primary);
@@ -778,9 +785,9 @@
         }
 
 
-        @media screen and (max-width: 992px) { 
+        @media screen and (max-width: 992px) {
             .hero-name { font-size: 50px; }
-            .hero-philosophy { font-size: 32px; }
+            .hero-philosophy { font-size: 30px; }
             .hero-approach { font-size: 18px; }
             .about-content { grid-template-columns: 1fr; gap: 40px; }
             .timeline::after { left: 31px; }
@@ -790,9 +797,9 @@
             .skills-content { grid-template-columns: repeat(2, 1fr); }
             .contact-grid { grid-template-columns: 1fr; }
         }
-        @media screen and (max-width: 768px) { 
+        @media screen and (max-width: 768px) {
             .hero-name { font-size: 40px; padding-left: 10px; }
-            .hero-philosophy { font-size: 26px; padding-left: 10px; margin-bottom: 20px; }
+            .hero-philosophy { font-size: 24px; padding-left: 10px; margin-bottom: 20px; }
             .hero-approach { font-size: 17px; padding-left: 10px; margin-bottom: 20px; }
             .hero-description { font-size: 16px; padding-left: 10px; }
             .services-intro, .contact-intro { font-size: 17px; }
@@ -810,9 +817,9 @@
             .impressum-modal-content { width: 95%; padding: 20px;}
             .impressum-close-btn { top: 10px; right: 15px; }
         }
-        @media screen and (max-width: 480px) { 
+        @media screen and (max-width: 480px) {
             .hero-name { font-size: 32px; padding-left: 5px; }
-            .hero-philosophy { font-size: 22px; padding-left: 5px; }
+            .hero-philosophy { font-size: 20px; padding-left: 5px; }
             .hero-approach { font-size: 16px; padding-left: 5px; }
             .services-intro, .contact-intro { font-size: 16px; }
             .section { padding: 60px 0; }
@@ -835,13 +842,13 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Sylwester Sosnowski",
-      "url": "https://syso.name/", /* MAKE SURE THIS IS YOUR CORRECT URL */
+      "url": "https://syso.name/",
       "jobTitle": "Embedded Systems Architect and Custom Hardware Engineer",
       "worksFor": {
         "@type": "Organization",
         "name": "Datanoise UG (haftungsbeschränkt)"
       },
-      "alumniOf": "Berlin, Germany", 
+      "alumniOf": "Berlin, Germany",
       "knowsAbout": ["Custom Hardware Design", "Embedded Systems", "C++", "Go", "Python", "PCB Design", "IoT Solutions", "Music Technology", "Production Engineering"],
       "sameAs": [
         "https://github.com/DatanoiseTV",
@@ -866,7 +873,7 @@
         "@type": "Person",
         "name": "Sylwester Sosnowski"
       },
-      "url": "https://syso.name/", /* MAKE SURE THIS IS YOUR CORRECT URL */
+      "url": "https://syso.name/",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Tempelhofer Ufer 36, c/o Susthetix GmbH",
@@ -875,13 +882,13 @@
         "addressCountry": "DE"
       },
       "telephone": "+493062930777",
-      "email": "mailto:hello-syso@datanoise.org", 
+      "email": "mailto:hello-syso@datanoise.org",
       "description": "Datanoise UG provides end-to-end custom hardware solutions for music technology and IoT applications, led by Sylwester Sosnowski in Berlin.",
       "areaServed": {
         "@type": "Place",
         "name": "Berlin, Germany"
       },
-      "legalName": "Datanoise UG (haftungsbeschränkt)", 
+      "legalName": "Datanoise UG (haftungsbeschränkt)",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Custom Hardware and Embedded Systems Services",
@@ -934,7 +941,7 @@
 <body>
     <header id="header">
         <div class="header-inner">
-            <a href="#home" class="logo">Sylwester <span>Sosnowski</span></a> 
+            <a href="#home" class="logo">Sylwester <span>Sosnowski</span></a>
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
@@ -950,14 +957,14 @@
         </div>
     </header>
 
-    <section class="hero" id="home"> 
+    <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="container">
             <div class="hero-content">
                 <p class="hero-greeting">Hi, my name is</p>
                 <h1 class="hero-name">Sylwester Sosnowski.</h1>
                 <p class="hero-philosophy">
-                    I believe your <span class="highlight-hero">unique vision</span> deserves technology built <span class="highlight-hero">without compromise</span>. My purpose is to <span class="highlight-hero">empower</span> that vision with hardware <span class="highlight-hero">engineered exclusively for you</span> in Berlin and beyond.
+                    I believe your <span class="highlight-hero">unique vision</span> deserves technology built <span class="highlight-hero">without compromise</span>. My purpose is to <span class="highlight-hero">empower</span> that vision with hardware <span class="highlight-hero">engineered exclusively for you</span><br/>&mdash; in Berlin and beyond.
                 </p>
                 <p class="hero-approach">
                     I achieve this by meticulously designing and developing custom hardware and firmware—from initial concept to robust, production-ready solutions for clients worldwide.
@@ -970,15 +977,20 @@
         </div>
     </section>
 
-    <!-- ... (rest of your HTML, no changes needed from <section class="section about" id="about"> downwards for this specific request, but the JS and modal part is included below for completeness) ... -->
     <section class="section about" id="about">
         <div class="container">
             <h2 class="section-title fade-in">About Your Embedded Systems Architect in Berlin</h2>
             <div class="about-content">
                 <div class="about-text fade-in">
-                    <p>My core belief is that true innovation stems from technology artfully tailored to a specific purpose. This drives my passion for engineering bespoke hardware solutions that don't just meet requirements, but unlock new possibilities for your projects. As an experienced Embedded Systems Architect based in Berlin, I guide solutions from concept to full-scale production.</p>
-                    <p>As the CEO of Datanoise, I specialize in creating bespoke hardware solutions for music technology and IoT applications. My company delivers end-to-end custom hardware development, from initial ideation to final manufactured product. I develop sophisticated embedded firmware in C/C++ and have extensive experience with Go and Python for tooling and backend services. My skill set extends to web and mobile development with Flutter and full-stack capabilities.</p>
-                    <p>I'm particularly experienced with industrial communication protocols like CANbus, Modbus RTU/TCP, and IIO. With a strong background in system architecture and hardware security, I offer unique expertise in creating specialized custom hardware that perfectly aligns with client requirements and market demands. Whether it's musical instruments, audio processing equipment, IoT devices, or specialized control systems, I develop tailored hardware solutions that exceed expectations.</p>
+                    <p>
+                        My passion lies in engineering <strong>bespoke hardware</strong>—solutions that don't just meet requirements, but <strong>unlock new possibilities</strong>. I believe true innovation stems from technology meticulously designed for a specific purpose. As an experienced Embedded Systems Architect in Berlin, I guide projects from initial concept to full-scale production, ensuring every detail aligns with your vision.
+                    </p>
+                    <p>
+                        Through <strong>Datanoise</strong>, my Berlin-based company, I specialize in crafting custom hardware for <strong>music technology and IoT</strong>. We provide end-to-end development, from ideation to manufactured product. My core expertise lies in C/C++ embedded firmware, complemented by Go and Python for robust backend services and tooling.
+                    </p>
+                    <p>
+                        My experience extends to industrial protocols (CANbus, Modbus, IIO) and robust system architecture, including <strong>hardware security</strong>. This allows me to create specialized hardware—from musical instruments and audio processors to IoT devices and industrial controls—that is precisely tailored to client needs and built to perform beyond expectations.
+                    </p>
                 </div>
                 <div class="about-skills fade-in">
                     <h3 class="about-skills-title">Technical Proficiencies</h3>
@@ -1028,6 +1040,8 @@
             </div>
         </div>
     </section>
+
+    <!-- ... (rest of your HTML, including services, experience, skills, contact, footer, modal) ... -->
 
     <section class="section services" id="services">
         <div class="container">
@@ -1211,7 +1225,7 @@
                         </div>
                         <h3 class="skill-name-large">Hardware Security</h3>
                     </div>
-                    <div class="skill-card"> 
+                    <div class="skill-card">
                         <div class="skill-icon-large">
                             <i class="fas fa-plug"></i>
                         </div>
@@ -1384,7 +1398,7 @@
                 Registergericht: Amtsgericht Charlottenburg (Berlin)<br>
                 Registernummer: HRB 250349 B
             </p>
-            
+
             <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</h2>
             <address>
                 Sylwester Sosnowski<br>
@@ -1410,9 +1424,8 @@
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                // Exclude impressum link from smooth scroll if it's handling the modal
                 if (this.id === 'impressumLink') {
-                    return; 
+                    return;
                 }
                 e.preventDefault();
                 const navMenu = document.querySelector('.nav');
@@ -1430,7 +1443,7 @@
                     const headerOffset = document.getElementById('header')?.offsetHeight || 70;
                     const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     const offsetPosition = elementPosition - headerOffset;
-        
+
                     window.scrollTo({
                         top: offsetPosition,
                         behavior: 'smooth'
@@ -1438,7 +1451,7 @@
                 }
             });
         });
-        
+
         // Mobile nav toggle
         const navToggle = document.querySelector('.nav-toggle');
         const navMenu = document.querySelector('.nav');
@@ -1465,7 +1478,7 @@
                 }
             });
         }
-        
+
         // Header scroll effect
         function headerScroll() {
             const header = document.getElementById('header');
@@ -1477,13 +1490,13 @@
                 }
             }
         }
-        
+
         window.addEventListener('scroll', function() {
             checkFade();
             headerScroll();
         });
         window.addEventListener('resize', checkFade);
-        
+
         // Impressum Modal JavaScript
         const impressumLink = document.getElementById('impressumLink');
         const impressumModal = document.getElementById('impressumModal');
@@ -1491,28 +1504,27 @@
 
         if (impressumLink && impressumModal && impressumCloseBtn) {
             impressumLink.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default anchor behavior
+                e.preventDefault();
                 impressumModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                document.body.style.overflow = 'hidden';
             });
 
             impressumCloseBtn.addEventListener('click', () => {
                 impressumModal.style.display = 'none';
-                document.body.style.overflow = 'auto'; // Restore background scrolling
+                document.body.style.overflow = 'auto';
             });
 
-            // Close modal if user clicks outside of the content area
             impressumModal.addEventListener('click', (e) => {
-                if (e.target === impressumModal) { // Clicked on the overlay itself
+                if (e.target === impressumModal) {
                     impressumModal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }
             });
         }
-        
+
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(checkFade, 100); 
-            headerScroll(); 
+            setTimeout(checkFade, 100);
+            headerScroll();
         });
     </script>
 </body>
