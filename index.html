@@ -270,7 +270,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards 0.5s;
-            padding-top: 10px;
+            padding-top: 0; /* Corrected */
             padding-left: 0;
         }
         .hero-philosophy {
@@ -290,7 +290,7 @@
             color: #f45b69;
             font-weight: 700;
         }
-        .hero-approach {
+        .hero-approach { /* Style kept in case it's uncommented in HTML */
             font-size: 20px;
             color: var(--text-secondary);
             margin-bottom: 25px;
@@ -824,7 +824,7 @@
         }
 
         /* Responsive adjustments for Hero */
-        @media screen and (max-width: 992px) {
+        @media screen and (max-width: 992px) { /* Tablet */
             .hero-inner-layout {
                 flex-direction: column;
                 text-align: center;
@@ -833,14 +833,11 @@
             .hero-image-container {
                 order: 1;
                 margin-bottom: 20px;
-                max-width: 220px;
+                max-width: 300px; /* Corrected */
             }
             .hero-content {
                 order: 2;
                 max-width: 100%;
-            }
-            .hero-profile-image {
-                max-width: 200px;
             }
             .hero-greeting,
             .hero-name,
@@ -860,12 +857,9 @@
             .left::after, .right::after { left: 21px; }
             .contact-grid { grid-template-columns: 1fr; }
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 768px) { /* Small Tablet / Large Mobile */
             .hero-image-container {
-                max-width: 280px;
-            }
-             .hero-profile-image {
-                max-width: 260px;
+                max-width: 260px; /* Corrected */
             }
             .hero-name { font-size: 40px; }
             .hero-philosophy { font-size: 24px; margin-bottom: 20px; }
@@ -883,12 +877,9 @@
             .impressum-modal-content { width: 95%; padding: 20px;}
             .impressum-close-btn { top: 10px; right: 15px; }
         }
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 480px) { /* Mobile */
             .hero-image-container {
-                max-width: 240px;
-            }
-            .hero-profile-image {
-                max-width: 220px;
+                max-width: 220px; /* Corrected */
             }
             .hero-name { font-size: 32px; }
             .hero-philosophy { font-size: 20px; }
@@ -908,7 +899,7 @@
             .timeline-company { font-size: 15px; }
         }
 
-        @media screen and (max-width: 992px) { /* Skills Section MQs merged for clarity */
+        @media screen and (max-width: 992px) {
             .skills-content {
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             }
@@ -917,7 +908,7 @@
             }
         }
 
-        @media screen and (max-width: 768px) { /* Skills Section MQs */
+        @media screen and (max-width: 768px) {
             .skills-category-title {
                 font-size: 22px;
                 margin-bottom: 20px;
@@ -938,7 +929,7 @@
             }
         }
 
-        @media screen and (max-width: 480px) { /* Skills Section MQs */
+        @media screen and (max-width: 480px) {
             .skills-category-title {
                 font-size: 20px;
             }
