@@ -464,7 +464,7 @@
             bottom: 0;
             left: 50%;
             margin-left: -1px;
-            z-index: 1; /* MODIFIED: Added z-index for the line */
+            z-index: 1;
         }
         .timeline-item {
             padding: 10px 40px;
@@ -473,9 +473,9 @@
             width: 50%;
             box-sizing: border-box;
             margin-bottom: 30px;
-            z-index: 2; /* MODIFIED: Added z-index to ensure items are above the line */
+            z-index: 2;
         }
-        .timeline-item::after { /* Timeline dot base style */
+        .timeline-item::after {
             content: '';
             position: absolute;
             width: 20px;
@@ -483,24 +483,22 @@
             right: -10px;
             background-color: var(--bg-dark);
             border: 3px solid var(--secondary);
-            box-shadow: 0 0 3px rgba(224,224,224,0.2); /* Initial subtle glow */
+            box-shadow: 0 0 3px rgba(224,224,224,0.2);
             top: 15px;
             border-radius: 50%;
-            z-index: 1; /* This z-index is local to .timeline-item, it's fine. */
-                       /* The parent .timeline-item's z-index: 2 ensures this circle (as part of the item) */
-                       /* is above the main timeline line. */
+            z-index: 1;
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .left { left: 0; }
         .right { left: 50%; }
         .right::after { left: -10px; }
 
-        @keyframes pulseDotBorder { /* Timeline dot animation keyframes */
+        @keyframes pulseDotBorder {
             0% { border-color: var(--secondary); box-shadow: 0 0 3px rgba(224,224,224,0.2); }
             50% { border-color: var(--accent); box-shadow: 0 0 10px rgba(255,255,255,0.5); }
             100% { border-color: var(--secondary); box-shadow: 0 0 3px rgba(224,224,224,0.2); }
         }
-        .timeline-item.is-visible::after { /* Class added by JS to trigger animation */
+        .timeline-item.is-visible::after {
             animation: pulseDotBorder 1.8s ease-in-out infinite;
         }
 
@@ -550,83 +548,91 @@
             border-radius: 4px;
             font-size: 12px;
         }
+
+        /* === START OF SKILLS SECTION STYLES === */
         .skills-section {
             background-color: var(--primary);
             position: relative;
         }
+
+        /* Container for all categories */
         .skills-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .skill-categories {
             display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
+            flex-direction: column;
+            gap: 40px; /* Consistent gap between category blocks */
         }
-        .skill-category {
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: transparent;
-            border: none;
-            color: var(--text-secondary);
-            font-family: var(--font-sans);
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
+
+        /* Style the individual category containers to be more card-like */
+        .skills-category-container {
+            background-color: var(--bg-light); /* Consistent with other cards */
+            border-radius: 8px;
+            padding: 25px 30px 30px 30px; /* Add padding around title and content */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Softer, more modern shadow */
+        }
+
+        .skills-category-title {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 30px; /* Increased margin below title */
             position: relative;
-            transition: all 0.3s ease;
+            padding-left: 15px;
+            border-left: 4px solid;
+            border-image: linear-gradient(to bottom, var(--gradient-color-1), var(--gradient-color-2)) 1;
         }
-        .skill-category.active {
-            color: var(--secondary);
-        }
-        .skill-category::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary);
-            transition: width 0.3s ease;
-        }
-        .skill-category.active::after {
-            width: 100%;
-        }
+
+        /* Grid for skill cards within each category */
         .skills-content {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
+
         .skill-card {
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            padding: 30px;
+            background-color: var(--bg-dark); /* Slightly darker than category container for contrast */
+            border-radius: 6px; /* Slightly smaller radius */
+            padding: 20px; /* Reduced padding */
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            display: flex; /* For vertical centering of content */
+            flex-direction: column; /* Stack icon and name vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            min-height: 150px; /* Ensure cards have some consistent height */
         }
+
         .skill-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            background-color: #2a2a2a; /* Slightly lighter on hover */
         }
-        .skill-icon-large { /* This is the div container for the icon */
-            font-size: 40px; /* This sets the size for the icon inside */
-            color: var(--secondary); /* Fallback color for the container, icon itself will be gradient */
-            margin-bottom: 15px;
+
+        .skill-icon-large {
+            font-size: 36px; /* Slightly smaller icon */
+            color: var(--secondary); /* Fallback for the container */
+            margin-bottom: 12px; /* Adjusted margin */
         }
+
         .skill-icon-large i { /* Target the <i> element for the gradient */
             background: linear-gradient(45deg, var(--gradient-color-1), var(--gradient-color-2));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            display: inline-block; /* Ensures proper rendering of gradient text */
+            display: inline-block;
         }
+
         .skill-name-large {
             font-family: var(--font-heading);
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 16px; /* Slightly smaller skill name for compactness */
+            font-weight: 500;
             color: var(--text-primary);
+            line-height: 1.4; /* Ensure text wraps nicely if long */
         }
+        /* === END OF SKILLS SECTION STYLES === */
+
+
         .contact {
             background-color: var(--bg-dark);
             position: relative;
@@ -817,7 +823,7 @@
             .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
             .right { left: 0; }
             .left::after, .right::after { left: 21px; }
-            .skills-content { grid-template-columns: repeat(2, 1fr); }
+            /* .skills-content { grid-template-columns: repeat(2, 1fr); } */ /* This is now handled by more specific skills MQs below */
             .contact-grid { grid-template-columns: 1fr; }
         }
         @media screen and (max-width: 768px) {
@@ -834,9 +840,9 @@
             .nav-list { flex-direction: column; align-items: center; padding: 30px 0; width: 100%; }
             .nav-item { margin: 10px 0; }
             .contact-button { margin: 20px 0 0; }
-            .skills-content { grid-template-columns: 1fr; }
-            .skill-categories { flex-wrap: wrap; }
-            .skill-category { margin-bottom: 10px; }
+            /* .skills-content { grid-template-columns: 1fr; } */ /* This is now handled by more specific skills MQs below */
+            .skill-categories { flex-wrap: wrap; } /* This class .skill-categories is not used in the new HTML structure */
+            .skill-category { margin-bottom: 10px; } /* This class .skill-category is not used in the new HTML structure */
             .impressum-modal-content { width: 95%; padding: 20px;}
             .impressum-close-btn { top: 10px; right: 15px; }
         }
@@ -858,6 +864,62 @@
             .timeline-role { font-size: 18px; }
             .timeline-company { font-size: 15px; }
         }
+
+        /* === MEDIA QUERIES FOR SKILLS SECTION (Sleek & Professional Update) === */
+        @media screen and (max-width: 992px) {
+            .skills-content {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
+             .skills-category-container {
+                padding: 20px 25px 25px 25px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .skills-category-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+            .skills-content {
+                grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+                gap: 15px;
+            }
+            .skill-card {
+                padding: 15px;
+                min-height: 130px;
+            }
+            .skill-name-large {
+                font-size: 15px;
+            }
+             .skills-category-container {
+                padding: 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .skills-category-title {
+                font-size: 20px;
+            }
+            .skills-container { /* Affects gap between category blocks */
+                gap: 30px;
+            }
+            .skills-content {
+                /* On very small screens, 1 column per skill card */
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .skill-card {
+                min-height: auto; /* Let height be natural for single column */
+                padding: 20px 15px; /* Adjust padding for single column */
+            }
+            .skill-icon-large {
+                font-size: 32px;
+            }
+            .skill-name-large {
+                font-size: 16px;
+            }
+        }
+        /* === END OF MEDIA QUERIES FOR SKILLS SECTION === */
     </style>
     <!-- ========= STRUCTURED DATA (SCHEMA MARKUP) - Person & potentially LocalBusiness for Datanoise UG ========= -->
     <script type="application/ld+json">
@@ -1121,7 +1183,7 @@
         <div class="container">
             <h2 class="section-title fade-in">Professional Experience in Hardware Engineering</h2>
             <div class="timeline">
-                <div class="timeline-item left fade-in"> <!-- JS will add .is-visible to this -->
+                <div class="timeline-item left fade-in">
                     <div class="timeline-content">
                         <div class="timeline-date">Jan 2024 - Present</div>
                         <h3 class="timeline-role">Embedded Systems Engineer</h3>
@@ -1135,7 +1197,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item right fade-in"> <!-- JS will add .is-visible to this -->
+                <div class="timeline-item right fade-in">
                     <div class="timeline-content">
                         <div class="timeline-date">Jan 2023 - Present</div>
                         <h3 class="timeline-role">CEO & Chief Hardware Engineer</h3>
@@ -1150,7 +1212,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item left fade-in"> <!-- JS will add .is-visible to this -->
+                <div class="timeline-item left fade-in">
                     <div class="timeline-content">
                         <div class="timeline-date">Nov 2018 - Jun 2019</div>
                         <h3 class="timeline-role">IT Security Specialist & DevOps Engineer</h3>
@@ -1164,7 +1226,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item right fade-in"> <!-- JS will add .is-visible to this -->
+                <div class="timeline-item right fade-in">
                     <div class="timeline-content">
                         <div class="timeline-date">Mar 2016 - Mar 2019</div>
                         <h3 class="timeline-role">Senior IT Consultant & Systems Architect</h3>
@@ -1185,154 +1247,231 @@
         <div class="container">
             <h2 class="section-title fade-in">Technical Expertise & Skills</h2>
             <div class="skills-container">
-                <div class="skills-content fade-in">
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-code"></i>
+                <!-- Programming Languages Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">Programming Languages</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-name-large">C/C++</h3>
                         </div>
-                        <h3 class="skill-name-large">C/C++ Development</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-code"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-name-large">Go (Golang)</h3>
                         </div>
-                        <h3 class="skill-name-large">Go (Golang)</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-code"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-name-large">Python</h3>
                         </div>
-                        <h3 class="skill-name-large">Python Programming</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-microchip"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            <h3 class="skill-name-large">Bash/Shell</h3>
                         </div>
-                        <h3 class="skill-name-large">Embedded C / C++</h3>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-mobile-alt"></i>
+                </div>
+
+                <!-- Embedded & Hardware Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">Embedded & Hardware Engineering</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3 class="skill-name-large">Embedded C / C++</h3>
                         </div>
-                        <h3 class="skill-name-large">Flutter Development</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-terminal"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3 class="skill-name-large">Electronic Circuit Design</h3>
                         </div>
-                        <h3 class="skill-name-large">Bash/Shell Scripting</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-microchip"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <h3 class="skill-name-large">PCB Layout & Design</h3>
                         </div>
-                        <h3 class="skill-name-large">Electronic Circuit Design</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-print"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="skill-name-large">Embedded Systems Architecture</h3>
                         </div>
-                        <h3 class="skill-name-large">PCB Layout & Design</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-cogs"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="skill-name-large">Hardware Security</h3>
                         </div>
-                        <h3 class="skill-name-large">Embedded Systems Architecture</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-shield-alt"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <h3 class="skill-name-large">Signal Integrity (SI)</h3>
                         </div>
-                        <h3 class="skill-name-large">Hardware Security</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-plug"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3 class="skill-name-large">Production Engineering (DFM/DFA)</h3>
                         </div>
-                        <h3 class="skill-name-large">Signal Integrity (SI)</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large">
-                            <i class="fas fa-industry"></i>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>
+                            <h3 class="skill-name-large">KiCad/Eagle/EasyEDA Pro EDA</h3>
                         </div>
-                        <h3 class="skill-name-large">Production Engineering (DFM/DFA)</h3>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h3 class="skill-name-large">Digital Signal Processing (DSP)</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="skill-name-large">IoT Platforms</h3>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="skill-name-large">Frontend Development</h3>
+                </div>
+
+                <!-- Web & Mobile Development Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">Web & Mobile</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="skill-name-large">Frontend</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="skill-name-large">Backend</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <h3 class="skill-name-large">Electron</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h3 class="skill-name-large">Flutter</h3>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-server"></i></div>
-                        <h3 class="skill-name-large">Backend Development</h3>
+                </div>
+
+                <!-- Communication Protocols Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">Communication Protocols & Interfaces</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <h3 class="skill-name-large">ProtoBuf</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <h3 class="skill-name-large">gRPC</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <h3 class="skill-name-large">CANbus / CANopen</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <h3 class="skill-name-large">Modbus RTU/TCP</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <h3 class="skill-name-large">IIO</h3>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-globe"></i></div>
-                        <h3 class="skill-name-large">Web Development</h3>
+                </div>
+
+                <!-- System Engineering Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">System Engineering & DevOps</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <h3 class="skill-name-large">Linux/*nix Systems</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <h3 class="skill-name-large">Git/Version Control</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h3 class="skill-name-large">Debugging Tools</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3 class="skill-name-large">CI/CD Pipelines</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="skill-name-large">Real-Time Operating Systems (RTOS)</h3>
+                        </div>
                     </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-exchange-alt"></i></div>
-                        <h3 class="skill-name-large">ProtoBuf</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-network-wired"></i></div>
-                        <h3 class="skill-name-large">gRPC</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-car"></i></div>
-                        <h3 class="skill-name-large">CANbus Protocol</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-industry"></i></div>
-                        <h3 class="skill-name-large">Modbus RTU/TCP</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-microchip"></i></div>
-                        <h3 class="skill-name-large">IIO Framework</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-drafting-compass"></i></div>
-                        <h3 class="skill-name-large">KiCad/Eagle EDA</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-network-wired"></i></div>
-                        <h3 class="skill-name-large">IoT Platforms</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-server"></i></div>
-                        <h3 class="skill-name-large">Linux/*nix Systems</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-code-branch"></i></div>
-                        <h3 class="skill-name-large">Git/Version Control</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-tools"></i></div>
-                        <h3 class="skill-name-large">Debugging Tools</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-project-diagram"></i></div>
-                        <h3 class="skill-name-large">CI/CD Pipelines</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-database"></i></div>
-                        <h3 class="skill-name-large">SQL and NoSQL DBs</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-clock"></i></div>
-                        <h3 class="skill-name-large">Time-Series Databases</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-cogs"></i></div>
-                        <h3 class="skill-name-large">Real-Time Operating Systems (RTOS)</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-music"></i></div>
-                        <h3 class="skill-name-large">Digital Signal Processing (DSP)</h3>
-                    </div>
-                    <div class="skill-card">
-                        <div class="skill-icon-large"><i class="fas fa-robot"></i></div>
-                        <h3 class="skill-name-large">Artificial Intelligence (AI)</h3>
+                </div>
+
+                <!-- Database & Data Category -->
+                <div class="skills-category-container fade-in">
+                    <h3 class="skills-category-title">Database & Data Engineering</h3>
+                    <div class="skills-content">
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="skill-name-large">SQL and NoSQL DBs</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3 class="skill-name-large">Time-Series Databases</h3>
+                        </div>
+                        <div class="skill-card">
+                            <div class="skill-icon-large">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="skill-name-large">Artificial Intelligence (AI)</h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1559,10 +1698,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Optional: If you want the animation to play only once
-                    // observer.unobserve(entry.target);
                 } else {
-                    // Optional: If you want animation to stop when out of view and restart
                     entry.target.classList.remove('is-visible');
                 }
             });
