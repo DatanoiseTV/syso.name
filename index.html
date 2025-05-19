@@ -270,7 +270,7 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.5s ease forwards 0.5s;
-            padding-top: 0; /* Corrected */
+            padding-top: 0;
             padding-left: 0;
         }
         .hero-philosophy {
@@ -290,7 +290,7 @@
             color: #f45b69;
             font-weight: 700;
         }
-        .hero-approach { /* Style kept in case it's uncommented in HTML */
+        .hero-approach {
             font-size: 20px;
             color: var(--text-secondary);
             margin-bottom: 25px;
@@ -833,7 +833,7 @@
             .hero-image-container {
                 order: 1;
                 margin-bottom: 20px;
-                max-width: 300px; /* Corrected */
+                max-width: 300px;
             }
             .hero-content {
                 order: 2;
@@ -859,7 +859,7 @@
         }
         @media screen and (max-width: 768px) { /* Small Tablet / Large Mobile */
             .hero-image-container {
-                max-width: 260px; /* Corrected */
+                max-width: 260px;
             }
             .hero-name { font-size: 40px; }
             .hero-philosophy { font-size: 24px; margin-bottom: 20px; }
@@ -879,7 +879,7 @@
         }
         @media screen and (max-width: 480px) { /* Mobile */
             .hero-image-container {
-                max-width: 220px; /* Corrected */
+                max-width: 220px;
             }
             .hero-name { font-size: 32px; }
             .hero-philosophy { font-size: 20px; }
@@ -1082,14 +1082,16 @@
                 <div class="hero-content">
                     <p class="hero-greeting">Hi, my name is</p>
                     <h1 class="hero-name">Sylwester Sosnowski.</h1>
+                    <!-- HERO PHILOSOPHY UPDATED -->
                     <p class="hero-philosophy">
-                        I believe your <span class="highlight-hero">unique vision</span> deserves technology built <span class="highlight-hero">without compromise</span>. My purpose is to <span class="highlight-hero">empower</span> that vision with hardware <span class="highlight-hero">engineered exclusively for you</span> &mdash; in Berlin and beyond.
+                        I believe your <span class="highlight-hero">unique vision</span> shouldn't be limited by off-the-shelf tech. My goal is to bring your ideas to life with custom hardware, <span class="highlight-hero">perfectly tailored</span> to what you want to achieve <br/>— in Berlin and beyond.
                     </p>
                     <!-- <p class="hero-approach">
                         I achieve this by meticulously designing and developing custom hardware and firmware—from initial concept to robust, production-ready solutions for clients worldwide.
                     </p> -->
+                    <!-- HERO DESCRIPTION UPDATED -->
                     <p class="hero-description">
-                        As an Embedded Systems Architect and CEO of <a href="https://datanoise.org" target="_blank" rel="noopener noreferrer">Datanoise</a>, I deliver these bespoke electronic solutions for music technology, IoT, and specialized industrial applications. Looking for a freelance embedded systems engineer or custom hardware consultant in Berlin?
+                        As an Embedded Systems Architect and CEO of <a href="https://datanoise.org" target="_blank" rel="noopener noreferrer">Datanoise</a>, I create custom electronic solutions for music tech, IoT, and specialized industrial projects. Need a freelance embedded systems engineer or custom hardware consultant in Berlin? Let's connect.
                     </p>
                     <a href="#contact" class="hero-cta">Schedule a Consultation</a>
                 </div>
@@ -1099,17 +1101,21 @@
 
     <section class="section about" id="about">
         <div class="container">
-            <h2 class="section-title fade-in">About Your Embedded Systems Architect in Berlin</h2>
+            <!-- ABOUT SECTION TITLE UPDATED -->
+            <h2 class="section-title fade-in">About Me & Datanoise</h2>
             <div class="about-content">
                 <div class="about-text fade-in">
+                    <!-- ABOUT PARA 1 UPDATED -->
                     <p>
-                        My passion lies in engineering <strong>bespoke hardware</strong>—solutions that don't just meet requirements, but <strong>unlock new possibilities</strong>. I believe true innovation stems from technology meticulously designed for a specific purpose. As an experienced Embedded Systems Architect in Berlin, I guide projects from initial concept to full-scale production, ensuring every detail aligns with your vision.
+                        I'm passionate about engineering <strong>custom hardware</strong> – the kind that doesn't just tick boxes, but actually <strong>opens up new possibilities</strong>. For me, real innovation comes from tech that's thoughtfully designed for a specific purpose. As an Embedded Systems Architect in Berlin, I'll work with you from the initial concept through to full-scale production, making sure every detail brings your vision to life.
                     </p>
+                    <!-- ABOUT PARA 2 UPDATED -->
                     <p>
-                        Through <strong>Datanoise</strong>, my Berlin-based company, I specialize in crafting custom hardware for <strong>music technology and IoT</strong>. We provide end-to-end development, from ideation to manufactured product. My core expertise lies in C/C++ embedded firmware, complemented by Go and Python for robust backend services and tooling.
+                        <strong>Datanoise</strong> is my Berlin-based company where I focus on crafting custom hardware, especially for <strong>music technology and IoT</strong>. We handle the entire process, from the first spark of an idea to a finished, manufactured product. My main toolkit includes C/C++ for embedded firmware, backed up by Go and Python for solid backend services and tools.
                     </p>
+                    <!-- ABOUT PARA 3 UPDATED -->
                     <p>
-                        My experience extends to industrial protocols (CANbus, Modbus, IIO) and robust system architecture, including <strong>hardware security</strong>. This allows me to create specialized hardware—from musical instruments and audio processors to IoT devices and industrial controls—that is precisely tailored to client needs and built to perform beyond expectations.
+                        I also have a strong background in industrial protocols (like CANbus, Modbus, and IIO) and designing secure, reliable system architectures, including <strong>hardware security</strong>. This means I can build specialized hardware for a wide range of needs – from musical instruments and audio gear to IoT devices and industrial controls – all carefully tailored to what you need and built to perform exceptionally.
                     </p>
                 </div>
                 <div class="about-skills fade-in">
@@ -1164,8 +1170,9 @@
     <section class="section services" id="services">
         <div class="container">
             <h2 class="section-title fade-in">Services</h2>
+            <!-- SERVICES INTRO UPDATED -->
             <div class="services-intro fade-in">
-                <p>I believe your projects deserve more than 'good enough.' My purpose is to deliver hardware that's not just functional, but precision-engineered to amplify your specific goals. Through <a href="https://datanoise.org" target="_blank" rel="noopener noreferrer"><strong>Datanoise</strong></a> in Berlin, we provide end-to-end custom hardware development, turning complex challenges into bespoke, high-performance IoT and electronics solutions:</p>
+                <p>Your projects deserve more than just 'good enough.' My goal is to create hardware that’s not only functional but truly enhances what you’re trying to achieve. At <a href="https://datanoise.org" target="_blank" rel="noopener noreferrer"><strong>Datanoise</strong></a> here in Berlin, we take on the full custom hardware journey, transforming tricky challenges into smart, effective IoT and electronics solutions:</p>
             </div>
             <div class="services-grid">
                 <div class="service-card fade-in">
@@ -1515,9 +1522,11 @@
 
     <section class="section contact" id="contact">
         <div class="container">
-            <h2 class="section-title fade-in">Contact Your Berlin Hardware Engineering Partner</h2>
+            <!-- CONTACT SECTION TITLE UPDATED -->
+            <h2 class="section-title fade-in">Let's Build Something Together</h2>
+            <!-- CONTACT INTRO UPDATED -->
             <div class="contact-intro fade-in">
-                <p>Ready to transcend off-the-shelf limitations with custom hardware design? If your vision demands hardware engineered with precision and purpose, let's discuss how we can build something exceptional together. I'm available for freelance embedded systems projects, custom hardware consulting, and new collaborations in Berlin and globally.</p>
+                <p>Tired of off-the-shelf tech holding your ideas back? If your vision needs hardware built with precision and purpose, let's talk about creating something truly special. I'm available for freelance embedded systems work, custom hardware consulting, and new projects, whether you're in Berlin or further afield.</p>
             </div>
             <div class="contact-grid fade-in">
                 <div class="contact-item">
@@ -1567,7 +1576,7 @@
 
     <div class="impressum-modal-overlay" id="impressumModal">
         <div class="impressum-modal-content">
-            <button class="impressum-close-btn" id="impressumCloseBtn" aria-label="Close Impressum">&times;</button>
+            <button class="impressum-close-btn" id="impressumCloseBtn" aria-label="Close Impressum">×</button>
             <h1>Impressum</h1>
 
             <h2>Angaben gemäß § 5 TMG:</h2>
